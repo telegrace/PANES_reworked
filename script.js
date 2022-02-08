@@ -1,25 +1,20 @@
-console.log("find the x and y of the slider");
+const SLIDER = document.getElementById("slider");
+const TOP_LAYER = document.getElementsByClassName("top")[0];
+const CONTAINER = document.getElementsByClassName("container")[0];
+let containerLeft = CONTAINER.offsetLeft;
+let sliderWidth = SLIDER.clientWidth;
 
-const topLayer = document.getElementsByClassName("top")[0];
-const slider = document.getElementById("slider");
-const topLayerWidth = topLayer.clientWidth;
-const sliderWidth = slider.clientWidth;
+const moveSlider = function (event) {
+  let mouseXpos = event.clientX;
+
+  SLIDER.style.left = mouseXpos - containerLeft - sliderWidth / 2 + "px";
+  TOP_LAYER.style.width = mouseXpos - containerLeft - sliderWidth / 2 + "px";
+};
+
 let drag = false;
 
-let posLeft = slider.offsetLeft;
-let posTop = slider.offsetTop;
+CONTAINER.addEventListener("mousedown", moveSlider);
 
-// topLayer.style.width = 600 + "px";
-
-console.log(posLeft);
-console.log(posTop);
-
-slider.style.left = 400 + "px";
-slider.addEventListener("mousedown", (event) => {
-  event.preventDefault();
-  drag = true;
-  if (drag) {
-    console.log("drag ", drag);
-    console.log(event.clientX);
-  }
-});
+// SLIDER.addEventListener("mousedown", (event) => {
+//   event.preventDefault();
+// });
